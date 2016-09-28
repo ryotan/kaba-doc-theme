@@ -1,0 +1,8 @@
+<!--sidebar start-->
+<aside>
+  <div id="sidebar" class="nav-collapse">
+    <ul class='sidebar-menu'>
+      {{ partial "menu-item.html" (dict "menu" .Site.Menus.main "thispage" . "menuopen" "open") }}
+    </ul>
+</aside>
+<!--sidebar end-->

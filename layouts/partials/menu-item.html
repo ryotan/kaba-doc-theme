@@ -1,0 +1,22 @@
+{{ $thispage := .thispage }}
+{{ range .menu }}
+{{ if .HasChildren }}
+<li class='sub-menu {{ if $thispage.HasMenuCurrent "main" . }} active menu-open {{ else if $thispage.IsMenuCurrent "main" . }} active menu-closed {{ else }} menu-closed {{ end }}'>
+  <a href="javascript:">
+    {{ .Pre }} <span>{{ .Name }}</span>
+    <span class='menu-arrow fa {{if $thispage.HasMenuCurrent "main" . }} fa-angle-down {{ else }} fa-angle-right {{ end }}'></span>
+  </a>
+  <ul class="sub">
+    {{ partial "menu-item.html" (dict "menu" .Children "thispage" $thispage) }}
+  </ul>
+</li>
+{{ else }}
+<li class='{{ if $thispage.IsMenuCurrent "main" . }} active {{ end }}'>
+  <a class="" href="{{.URL}}">
+    {{ .Pre }}
+    <!--<i class="icon_house_alt"></i>-->
+    <span>{{ .Name }}</span>
+  </a>
+</li>
+{{ end }}
+{{ end }}

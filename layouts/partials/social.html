@@ -1,0 +1,31 @@
+{{ $showComment := (and ($.Site.Params.disqus_short_name) (ne $.Params.comments "false")) }}
+{{ if or $.Site.Params.addthis_profile_id $showComment }}
+<div class="row">
+  <div class="comment-panel">
+    {{ with $.Site.Params.addthis_profile_id }}
+    <section class="share">
+      <div class="addthis_sharing_toolbox"></div>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ . }}"></script>
+    </section>
+    {{ end }}
+
+    {{ with $.Site.Params.disqus_short_name }}
+    <section id="comment">
+      <h1 class="title">Comments</h1>
+      <div id="disqus_thread" aria-live="polite">{{ partial "disqus_noscript.html" . }}</div>
+      <!-- Load script if disquss comments are enabled and `page.comments` is either empty (index) or set to true -->
+      <script type="text/javascript">
+        // show comment count for index and category pages.
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//{{ . }}.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+      </script>
+    </section>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

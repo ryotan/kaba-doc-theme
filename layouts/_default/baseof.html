@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{{ $lang := .Site.LanguageCode | default "en" }}
+<html lang="{{ $lang }}">
+{{ partial "head.html" . }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+  {{ partial "header.html" . }}
+  {{ partial "menu.html" . }}
+
+  <!--main content start-->
+  <section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-md-1">
+          {{ if .IsPage }}
+          {{ with .GetParam "prev" }}
+          <a class="navigation prev" href="{{ . }}">
+            <i class="fa fa-angle-left"></i>
+          </a>
+          {{ end }}
+          {{ end }}
+        </div>
+        <div class="col-md-10">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="content-body">
+                {{ block "main" . }}
+                {{ end }}
+              </div>
+              <div class="row">
+                <div class="footer-panel">
+                  {{ partial "footer.html" . }}
+                </div>
+                <div class="footer-panel" style="margin-top: 0; padding: 0;">
+                  <img class=" pull-right" src="/share/made-with-hugo-long.png" style="height: 50px;" />
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-md-1">
+          {{ if .IsPage }}
+          {{ with .GetParam "next" }}
+          <a class="navigation next" href="{{.}}">
+            <i class="fa fa-angle-right"> </i>
+          </a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+      <!-- page start-->
+    </section>
+  </section>
+  <!--main content end-->
+</section>
+<!-- container section end -->
+<!-- javascripts -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.scrollTo.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!--custom script for all page-->
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/js/scripts.js"></script>
+{{ partial "google_analytics.html" . }}
+</body>
+</html>
