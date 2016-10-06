@@ -1,0 +1,29 @@
+{
+  "name": "kaba-doc-theme",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "Kaba Document Theme",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "clean": "rimraf dist/!\\(.git\\)",
+    "build": "npm-run-all clean --parallel build:webpack build:public",
+    "build:webpack": "webpack",
+    "build:public": "cpx 'public/**/*' 'dist/'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryotan/kaba-doc-theme.git"
+  },
+  "author": "ryotan <ryotan@ucb-jp.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ryotan/kaba-doc-theme/issues"
+  },
+  "homepage": "https://github.com/ryotan/kaba-doc-theme#readme",
+  "devDependencies": {
+    "cpx": "1.5.0",
+    "npm-run-all": "3.1.0",
+    "rimraf": "2.5.4",
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.16.2"
+  }
+}

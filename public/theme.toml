@@ -1,0 +1,16 @@
+name = "Kaba Document Theme"
+license = "Apache-2.0"
+licenselink = "https://www.apache.org/licenses/LICENSE-2.0"
+description = "Customized theme of Hugo documentation site (https://gohugo.io/)."
+homepage = "https://github.com/ryotan/kaba-doc-base"
+min_version = 0.16
+
+[author]
+  name = "ryotan"
+  homepage = "http://ryotan.github.io"
+
+# If porting an existing theme
+[original]
+  name = "Hugo Document"
+  homepage = "https://gohugo.io/"
+  repo = "https://github.com/spf13/hugo"
