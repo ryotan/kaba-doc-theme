@@ -64,7 +64,7 @@ recursive(paths.appBuild, (err, fileNames) => {
 
   // Remove all content but keep the directory so that
   // if you're in it, you don't end up in Trash
-  rimrafSync(paths.appBuild + '/*');
+  rimrafSync(paths.appBuild + '/!.git');
 
   // Start the webpack build
   build(previousSizeMap);
