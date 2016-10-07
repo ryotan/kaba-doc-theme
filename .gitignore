@@ -5,6 +5,8 @@
 /.tmp/
 *.tmp
 /dist/
+/public/config.toml
+/public/content/
 
 
 ### Emacs template
