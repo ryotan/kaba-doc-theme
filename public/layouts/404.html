@@ -1,5 +1,5 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 <div class="col-lg-8 col-md-12">
-Page Not Found.
+  {{ partial "404-body.html" . }}
 </div>
-{{ partial "footer.html" . }}
+{{ end }}
