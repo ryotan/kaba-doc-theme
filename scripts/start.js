@@ -113,7 +113,7 @@ function printFileSizes(stats, previousSizeMap) {
 // Create the production build and print the deployment instructions.
 function build(previousSizeMap) {
   console.log('Creating an optimized production build...');
-  webpack(config).run((err, stats) => {
+  webpack(config).watch({}, (err, stats) => {
     if (err) {
       console.error('Failed to create a production build. Reason:');
       console.error(err.message || err);
