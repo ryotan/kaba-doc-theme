@@ -52,7 +52,7 @@ function getDifferenceLabel(currentSize, previousSize) {
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
-recursive(paths.appBuild, (err, fileNames) => {
+recursive(paths.appDist, (err, fileNames) => {
   var previousSizeMap = (fileNames || [])
     .filter(fileName => /\.(js|css)$/.test(fileName))
     .reduce((memo, fileName) => {
@@ -64,7 +64,7 @@ recursive(paths.appBuild, (err, fileNames) => {
 
   // Remove all content but keep the directory so that
   // if you're in it, you don't end up in Trash
-  rimrafSync(paths.appBuild + '/!.git');
+  rimrafSync(paths.appDist + '/**/!(.git)');
 
   // Start the webpack build
   build(previousSizeMap);
@@ -83,7 +83,7 @@ function printFileSizes(stats, previousSizeMap) {
       var previousSize = previousSizeMap[removeFileNameHash(asset.name)];
       var difference = getDifferenceLabel(size, previousSize);
       return {
-        folder: path.join('build', path.dirname(asset.name)),
+        folder: path.resolve(paths.appBuild, path.dirname(asset.name)),
         name: path.basename(asset.name),
         size: size,
         sizeLabel: filesize(size) + (difference ? ' (' + difference + ')' : '')
@@ -178,7 +178,7 @@ function build(previousSizeMap) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, path.resolve(paths.appBuild, '..'), {
+  fs.copySync(paths.appPublic, paths.appDist, {
     dereference: true,
     filter: file => file !== paths.appHtml
   });
